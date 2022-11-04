@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9012B7029144D130077D8CA /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9012B6F29144D130077D8CA /* CustomTableViewCell.swift */; };
 		B93AF1E52913DAB10014DB0B /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93AF1E42913DAB10014DB0B /* MenuItems.swift */; };
 		B944B6B029133454001BAD60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B944B6AF29133454001BAD60 /* AppDelegate.swift */; };
 		B944B6B229133454001BAD60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B944B6B129133454001BAD60 /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9012B6F29144D130077D8CA /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B93AF1E42913DAB10014DB0B /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		B944B6AC29133454001BAD60 /* CafeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B944B6AF29133454001BAD60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				B944B6B129133454001BAD60 /* SceneDelegate.swift */,
 				B944B6B329133454001BAD60 /* ViewController.swift */,
 				B93AF1E42913DAB10014DB0B /* MenuItems.swift */,
+				B9012B6F29144D130077D8CA /* CustomTableViewCell.swift */,
 				B944B6B829133455001BAD60 /* Assets.xcassets */,
 				B944B6BA29133455001BAD60 /* LaunchScreen.storyboard */,
 				B944B6BD29133455001BAD60 /* Info.plist */,
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B944B6B429133454001BAD60 /* ViewController.swift in Sources */,
+				B9012B7029144D130077D8CA /* CustomTableViewCell.swift in Sources */,
 				B93AF1E52913DAB10014DB0B /* MenuItems.swift in Sources */,
 				B944B6B029133454001BAD60 /* AppDelegate.swift in Sources */,
 				B944B6B229133454001BAD60 /* SceneDelegate.swift in Sources */,
