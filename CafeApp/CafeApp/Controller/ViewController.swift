@@ -9,7 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let fullMenu = Menu()
+    //    enum SectionType: Int {
+    //        enum drink, food, other
+    //    }
+    
+    let fullMenu = MenuItems()
     
     let cafeTitle = UILabel()
     let cafeImage = UIImageView()
@@ -20,7 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-
+        
         view.addSubview(titleStack)
         view.addSubview(menu)
         
@@ -51,9 +55,10 @@ class ViewController: UIViewController {
     }
     
     private func configureMenu() {
-        //menu.delegate = self
+        menu.delegate = self
         menu.dataSource = self
         menu.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        menu.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuTableHeaderView")
         
         menu.clipsToBounds = true
         menu.layer.cornerRadius = 30
@@ -84,15 +89,65 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDelegate
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuTableHeaderView") as? MenuTableHeaderView else {
+            return nil
+        }
+        
+        switch section {
+        case 0:
+            headerView.headerTitle = "Drinks"
+        case 1:
+            headerView.headerTitle = "Food"
+        case 2:
+            headerView.headerTitle = "Misc / Other"
+        default:
+            return nil
+        }
+        return headerView
+    }
+}
+
+// MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fullMenu.menuArray.count
+        switch section {
+        case 0:
+            return fullMenu.drinks.count
+        case 1:
+            return fullMenu.food.count
+        case 2:
+            return fullMenu.other.count
+        default:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
-        let currentMenuItem = fullMenu.menuArray[indexPath.row]
-        cell.set(menuItem: currentMenuItem)
+        
+        var item: MenuItem?
+        
+        switch indexPath.section {
+        case 0:
+            item = fullMenu.drinks[indexPath.row]
+        case 1:
+            item = fullMenu.food[indexPath.row]
+        case 2:
+            item = fullMenu.other[indexPath.row]
+        default: return UITableViewCell()
+        }
+        
+        if let item = item {
+            cell.set(menuItem: item)
+        }
         return cell
     }
 }

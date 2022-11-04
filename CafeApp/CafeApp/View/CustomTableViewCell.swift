@@ -8,12 +8,9 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
+    
     var backgroundCell = UIView()
-    
-    var itemImageString = String()
     var itemImage = UIImageView()
-    
     var itemName = UILabel()
     var itemDescription = UILabel()
     var itemPrice = UILabel()
@@ -30,7 +27,6 @@ class CustomTableViewCell: UITableViewCell {
         addSubview(itemPrice)
         
         configureBackgroundCell()
-        configureItemImage()
         configureItemName()
         configureItemDescription()
         configureItemPrice()
@@ -57,9 +53,6 @@ class CustomTableViewCell: UITableViewCell {
         backgroundCell.backgroundColor = UIColor(named: "Color2")
     }
     
-    private func configureItemImage() {
-    }
-    
     private func configureItemName() {
         itemName.textColor = .black
         itemName.font = UIFont(name: "Inter-Medium", size: 20)
@@ -72,7 +65,7 @@ class CustomTableViewCell: UITableViewCell {
     
     private func configureItemPrice() {
         itemPrice.textColor = .black
-        itemPrice.font = UIFont(name: "Inter-Medium", size: 20)
+        itemPrice.font = UIFont(name: "Inter-Medium", size: 18)
     }
     
     private func setConstraints() {
