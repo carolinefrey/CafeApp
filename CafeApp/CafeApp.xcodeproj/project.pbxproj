@@ -118,9 +118,9 @@
 			children = (
 				B9012B6F29144D130077D8CA /* CustomTableViewCell.swift */,
 				B97386C429152FBB00FA6338 /* MenuTableHeaderView.swift */,
+				B9F347DA291690AF0005A0F4 /* SelectedItemDetailView.swift */,
 				B9F347D629168FBB0005A0F4 /* IngredientsBox.swift */,
 				B9F347D82916900B0005A0F4 /* PairingsBox.swift */,
-				B9F347DA291690AF0005A0F4 /* SelectedItemDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

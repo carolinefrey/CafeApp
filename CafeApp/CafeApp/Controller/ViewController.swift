@@ -108,7 +108,7 @@ extension ViewController: UITableViewDelegate {
             headerView.headerTitle = "Misc / Other"
         default:
             return nil
-        }
+        }        
         return headerView
     }
     
@@ -169,6 +169,7 @@ extension ViewController: UITableViewDataSource {
         if let item = item {
             cell.set(menuItem: item)
         }
+        
         return cell
     }
 }

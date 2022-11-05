@@ -10,6 +10,8 @@ import UIKit
 class PairingsBox: UIView {
 
     //MARK: - UI Properties
+    let selectedItem: MenuItem
+
     let pairingsLargeBox = UIView()
     let pairingsTitle = UILabel()
     let pairingsSmallBox = UIView()
@@ -17,9 +19,12 @@ class PairingsBox: UIView {
     let pairingTitle = UILabel()
     let pairingPrice = UILabel()
     
-    //MARK: - Initalizers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    //MARK: - Initializers
+    init(selectedItem: MenuItem) {
+        self.selectedItem = selectedItem
+        
+        super.init(frame: .zero)
+        
         
     }
     
