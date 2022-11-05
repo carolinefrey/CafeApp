@@ -9,9 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //    enum SectionType: Int {
-    //        enum drink, food, other
-    //    }
+    // MARK: - UI Properties
     
     let fullMenu = MenuItems()
     
@@ -19,6 +17,8 @@ class ViewController: UIViewController {
     let cafeImage = UIImageView()
     let titleStack = UIStackView()
     let menu = UITableView()
+    
+    // MARK: - Initializers
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,8 @@ class ViewController: UIViewController {
         
         setConstraints()
     }
+    
+    // MARK: - UI Setup
     
     private func configureCafeImage() {
         cafeImage.image = UIImage(named: "coffeeTitle")
@@ -90,6 +92,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: - UITableViewDelegate
+
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuTableHeaderView") as? MenuTableHeaderView else {
@@ -108,9 +111,27 @@ extension ViewController: UITableViewDelegate {
         }
         return headerView
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC: UIViewController
+        
+        switch indexPath.section {
+        case 0:
+            detailVC = DetailViewController(selectedItem: fullMenu.drinks[indexPath.row])
+        case 1:
+            detailVC = DetailViewController(selectedItem: fullMenu.food[indexPath.row])
+        case 2:
+            detailVC = DetailViewController(selectedItem: fullMenu.other[indexPath.row])
+        default:
+            detailVC = UIViewController()
+        }
+        
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
+
 extension ViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -9,6 +9,8 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
+    // MARK: - UI Properties
+    
     var backgroundCell = UIView()
     var itemImage = UIImageView()
     var itemName = UILabel()
@@ -17,6 +19,8 @@ class CustomTableViewCell: UITableViewCell {
 
     static let identifier = "CustomTableViewCell"
 
+    // MARK: - UI Initializers
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -48,6 +52,8 @@ class CustomTableViewCell: UITableViewCell {
 
         itemPrice.text = priceFormat.string(from: NSNumber(value: menuItem.price))
     }
+    
+    // MARK: - UI Setup
     
     private func configureBackgroundCell() {
         backgroundCell.backgroundColor = UIColor(named: "Color2")
