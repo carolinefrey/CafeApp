@@ -53,12 +53,15 @@ class DetailViewController: UIViewController {
     private func configureStack() {
         stack.axis = .vertical
         stack.alignment = .center
-        stack.distribution = .fillProportionally
-        stack.spacing = 250
+        stack.distribution = .fill
+        stack.spacing = 30
     }
     
     private func setConstraints() {
         itemName.translatesAutoresizingMaskIntoConstraints = false
+        detailCircle.translatesAutoresizingMaskIntoConstraints = false
+        ingredients.translatesAutoresizingMaskIntoConstraints = false
+        pairings.translatesAutoresizingMaskIntoConstraints = false
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         stack.addArrangedSubview(detailCircle)
@@ -69,10 +72,17 @@ class DetailViewController: UIViewController {
             itemName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             itemName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
+            detailCircle.heightAnchor.constraint(equalToConstant: 260),
+            detailCircle.widthAnchor.constraint(equalToConstant: 260),
+            ingredients.heightAnchor.constraint(equalToConstant: 96),
+            ingredients.widthAnchor.constraint(equalToConstant: 290),
+            pairings.heightAnchor.constraint(equalToConstant: 180),
+            pairings.widthAnchor.constraint(equalToConstant: 340),
+            
             stack.topAnchor.constraint(equalTo: itemName.bottomAnchor, constant: 10),
             stack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stack.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
         ])
     }
 }

@@ -77,9 +77,6 @@ class SelectedItemDetailView: UIView {
         itemPrice.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            itemCircle.topAnchor.constraint(equalTo: topAnchor),
-            itemCircle.leadingAnchor.constraint(equalTo: leadingAnchor),
-            itemCircle.trailingAnchor.constraint(equalTo: trailingAnchor),
             itemCircle.heightAnchor.constraint(equalToConstant: 260),
             itemCircle.widthAnchor.constraint(equalToConstant: 260),
             

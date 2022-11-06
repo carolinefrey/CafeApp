@@ -67,8 +67,6 @@ class IngredientsBox: UIView {
         ingredients.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            ingredientsBox.topAnchor.constraint(equalTo: topAnchor),
-            ingredientsBox.centerXAnchor.constraint(equalTo: centerXAnchor),
             ingredientsBox.heightAnchor.constraint(equalToConstant: 96),
             ingredientsBox.widthAnchor.constraint(equalToConstant: 290),
 
