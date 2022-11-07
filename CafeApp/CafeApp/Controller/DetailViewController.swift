@@ -8,15 +8,45 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
     // MARK: - UI Properties
     var selectedItem: MenuItem
-
-    let itemName = UILabel()
-    lazy var detailCircle = SelectedItemDetailView(selectedItem: selectedItem)
-    lazy var ingredients = IngredientsBox(selectedItem: selectedItem)
-    lazy var pairings = PairingsBox(selectedItem: selectedItem)
-    let stack = UIStackView()
+    
+    let itemName: UILabel = {
+        let name = UILabel()
+        name.translatesAutoresizingMaskIntoConstraints = false
+        name.font = UIFont(name: "Inter-SemiBold", size: 34)
+        name.textColor = .black
+        return name
+    }()
+    
+    lazy var detailCircle: SelectedItemDetailView = {
+        let circle = SelectedItemDetailView(selectedItem: selectedItem)
+        circle.translatesAutoresizingMaskIntoConstraints = false
+        return circle
+    }()
+    
+    lazy var ingredients: IngredientsBoxView = {
+        let ingredients = IngredientsBoxView(selectedItem: selectedItem)
+        ingredients.translatesAutoresizingMaskIntoConstraints = false
+        return ingredients
+    }()
+    
+    lazy var pairings: PairingsLargeBoxView = {
+        let pairings = PairingsLargeBoxView(selectedItem: selectedItem)
+        pairings.translatesAutoresizingMaskIntoConstraints = false
+        return pairings
+    }()
+    
+    let stack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.alignment = .center
+        stack.distribution = .fill
+        stack.spacing = 30
+        return stack
+    }()
     
     // MARK: - Initializers
     init(selectedItem: MenuItem) {
@@ -31,38 +61,19 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         
-        view.addSubview(itemName)
-        view.addSubview(stack)
+        itemName.text = "\(selectedItem.name)"
         
-        configureItemName()
-        configureStack()
-        
-        setConstraints()
+        setup()
     }
     
     // MARK: - UI Setup
-    private func configureItemName() {
-        itemName.text = "\(selectedItem.name)"
-        itemName.font = UIFont(name: "Inter-SemiBold", size: 34)
-        itemName.textColor = .black
-    }
     
-    private func configureStack() {
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.distribution = .fill
-        stack.spacing = 30
-    }
-    
-    private func setConstraints() {
-        itemName.translatesAutoresizingMaskIntoConstraints = false
-        detailCircle.translatesAutoresizingMaskIntoConstraints = false
-        ingredients.translatesAutoresizingMaskIntoConstraints = false
-        pairings.translatesAutoresizingMaskIntoConstraints = false
-        stack.translatesAutoresizingMaskIntoConstraints = false
+    private func setup() {
+        view.addSubview(itemName)
+        view.addSubview(stack)
         
         stack.addArrangedSubview(detailCircle)
         stack.addArrangedSubview(ingredients)

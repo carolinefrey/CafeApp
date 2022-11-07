@@ -13,10 +13,44 @@ class ViewController: UIViewController {
     
     let fullMenu = MenuItems()
     
-    let cafeTitle = UILabel()
-    let cafeImage = UIImageView()
-    let titleStack = UIStackView()
-    let menu = UITableView()
+    let cafeTitle: UILabel = {
+        let title = UILabel()
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.text = "Hanko Cafe"
+        title.textColor = .black
+        title.font = UIFont(name: "Inter-Medium", size: 40)
+        title.textAlignment = .center
+        return title
+    }()
+    
+    let cafeImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "coffeeTitle")
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let titleStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.alignment = .lastBaseline
+        stack.distribution = .fill
+        stack.spacing = 15
+        return stack
+    }()
+    
+    let menu: UITableView = {
+        let menu = UITableView()
+        menu.translatesAutoresizingMaskIntoConstraints = false
+        menu.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        menu.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuTableHeaderView")
+        menu.clipsToBounds = true
+        menu.layer.cornerRadius = 30
+        menu.rowHeight = 70
+        return menu
+    }()
     
     // MARK: - Initializers
     
@@ -25,56 +59,19 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        view.addSubview(titleStack)
-        view.addSubview(menu)
-        
-        configureCafeImage()
-        configureCafeTitle()
-        configureTitleStack()
-        configureMenu()
-        
-        setConstraints()
+        setup()
     }
     
     // MARK: - UI Setup
     
-    private func configureCafeImage() {
-        cafeImage.image = UIImage(named: "coffeeTitle")
-        cafeImage.contentMode = .scaleAspectFit
-    }
-    private func configureCafeTitle() {
-        cafeTitle.text = "Hanko Cafe"
-        cafeTitle.textColor = .black
-        cafeTitle.font = UIFont(name: "Inter-Medium", size: 40)
-        cafeTitle.textAlignment = .center
-    }
-    
-    private func configureTitleStack() {
-        titleStack.axis = .horizontal
-        titleStack.alignment = .lastBaseline
-        titleStack.distribution = .fill
-        titleStack.spacing = 15
-    }
-    
-    private func configureMenu() {
-        menu.delegate = self
-        menu.dataSource = self
-        menu.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        menu.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuTableHeaderView")
-        
-        menu.clipsToBounds = true
-        menu.layer.cornerRadius = 30
-        menu.rowHeight = 70
-    }
-    
-    private func setConstraints() {
-        cafeTitle.translatesAutoresizingMaskIntoConstraints = false
-        cafeImage.translatesAutoresizingMaskIntoConstraints = false
-        titleStack.translatesAutoresizingMaskIntoConstraints = false
-        menu.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func setup() {
+        view.addSubview(titleStack)
+        view.addSubview(menu)
         titleStack.addArrangedSubview(cafeImage)
         titleStack.addArrangedSubview(cafeTitle)
+        
+        menu.delegate = self
+        menu.dataSource = self
         
         NSLayoutConstraint.activate([
             cafeImage.heightAnchor.constraint(equalToConstant: 100),
@@ -108,7 +105,7 @@ extension ViewController: UITableViewDelegate {
             headerView.headerTitle = "Misc / Other"
         default:
             return nil
-        }        
+        }
         return headerView
     }
     

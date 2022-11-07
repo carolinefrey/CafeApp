@@ -8,14 +8,42 @@
 import UIKit
 
 class SelectedItemDetailView: UIView {
-
+    
     //MARK: - UI Properties
     var selectedItem: MenuItem
-
-    let itemCircle = UIView()
-    let itemImage = UIImageView()
-    let itemPriceBox = UIView()
-    let itemPrice = UILabel()
+    
+    let itemCircle: UIView = {
+        let circle = UIView()
+        circle.translatesAutoresizingMaskIntoConstraints = false
+        circle.backgroundColor = UIColor(named: "Color5")
+        circle.clipsToBounds = true
+        circle.layer.cornerRadius = 130
+        return circle
+    }()
+    
+    let itemImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let itemPriceBox: UIView = {
+        let box = UIView()
+        box.translatesAutoresizingMaskIntoConstraints = false
+        box.backgroundColor = UIColor(named: "Color4")
+        box.clipsToBounds = true
+        box.layer.cornerRadius = 10
+        return box
+    }()
+    
+    let itemPrice: UILabel = {
+        let price = UILabel()
+        price.translatesAutoresizingMaskIntoConstraints = false
+        price.tintColor = .black
+        price.font = UIFont(name: "Inter-Medium", size: 16)
+        return price
+    }()
     
     //MARK: - Initializers
     
@@ -23,58 +51,28 @@ class SelectedItemDetailView: UIView {
         self.selectedItem = selectedItem
         
         super.init(frame: .zero)
-        
-        addSubview(itemCircle)
-        addSubview(itemImage)
-        addSubview(itemPriceBox)
-        addSubview(itemPrice)
-        
-        configureItemCircle()
-        configureItemImage()
-        configureItemPriceBox()
-        configureItemPrice()
-        
-        setConstraints()
-    }
 
+        setup()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - UI Setup
     
-    private func configureItemCircle() {
-        itemCircle.backgroundColor = UIColor(named: "Color5")
-        itemCircle.clipsToBounds = true
-        itemCircle.layer.cornerRadius = 130
-    }
-    
-    private func configureItemImage() {
+    private func setup() {
+        
         itemImage.image = UIImage(named: "\(selectedItem.image)")
-        itemImage.contentMode = .scaleAspectFit
-    }
-    
-    private func configureItemPriceBox() {
-        itemPriceBox.backgroundColor = UIColor(named: "Color4")
-        itemPriceBox.clipsToBounds = true
-        itemPriceBox.layer.cornerRadius = 10
-    }
-    
-    private func configureItemPrice() {
-        itemPrice.tintColor = .black
-        itemPrice.font = UIFont(name: "Inter-Medium", size: 16)
         
         let priceFormat = NumberFormatter()
         priceFormat.numberStyle = .currency
-
         itemPrice.text = priceFormat.string(from: NSNumber(value: selectedItem.price))
-    }
-    
-    private func setConstraints() {
-        itemCircle.translatesAutoresizingMaskIntoConstraints = false
-        itemImage.translatesAutoresizingMaskIntoConstraints = false
-        itemPriceBox.translatesAutoresizingMaskIntoConstraints = false
-        itemPrice.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(itemCircle)
+        addSubview(itemImage)
+        addSubview(itemPriceBox)
+        addSubview(itemPrice)
         
         NSLayoutConstraint.activate([
             itemCircle.heightAnchor.constraint(equalToConstant: 260),
@@ -84,7 +82,7 @@ class SelectedItemDetailView: UIView {
             itemImage.centerXAnchor.constraint(equalTo: itemCircle.centerXAnchor),
             itemImage.heightAnchor.constraint(equalToConstant: 130),
             itemImage.widthAnchor.constraint(equalToConstant: 130),
-        
+            
             itemPriceBox.topAnchor.constraint(equalTo: itemCircle.topAnchor, constant: 230),
             itemPriceBox.centerXAnchor.constraint(equalTo: itemCircle.centerXAnchor),
             itemPriceBox.heightAnchor.constraint(equalToConstant: 45),
