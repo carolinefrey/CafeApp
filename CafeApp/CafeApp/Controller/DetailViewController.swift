@@ -11,6 +11,7 @@ class DetailViewController: UIViewController {
     
     // MARK: - UI Properties
     var selectedItem: MenuItem
+    var selectedItemType: String
     
     let itemName: UILabel = {
         let name = UILabel()
@@ -33,7 +34,7 @@ class DetailViewController: UIViewController {
     }()
     
     lazy var pairings: PairingsLargeBoxView = {
-        let pairings = PairingsLargeBoxView(selectedItem: selectedItem)
+        let pairings = PairingsLargeBoxView(selectedItem: selectedItem, type: selectedItemType)
         pairings.translatesAutoresizingMaskIntoConstraints = false
         return pairings
     }()
@@ -49,8 +50,9 @@ class DetailViewController: UIViewController {
     }()
     
     // MARK: - Initializers
-    init(selectedItem: MenuItem) {
+    init(selectedItem: MenuItem, type: String) {
         self.selectedItem = selectedItem
+        self.selectedItemType = type
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -58,7 +60,7 @@ class DetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

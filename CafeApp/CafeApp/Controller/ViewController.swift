@@ -114,11 +114,11 @@ extension ViewController: UITableViewDelegate {
         
         switch indexPath.section {
         case 0:
-            detailVC = DetailViewController(selectedItem: fullMenu.drinks[indexPath.row])
+            detailVC = DetailViewController(selectedItem: fullMenu.drinks[indexPath.row], type: "drink")
         case 1:
-            detailVC = DetailViewController(selectedItem: fullMenu.food[indexPath.row])
+            detailVC = DetailViewController(selectedItem: fullMenu.food[indexPath.row], type: "food")
         case 2:
-            detailVC = DetailViewController(selectedItem: fullMenu.other[indexPath.row])
+            detailVC = DetailViewController(selectedItem: fullMenu.other[indexPath.row], type: "other")
         default:
             detailVC = UIViewController()
         }

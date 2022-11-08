@@ -11,6 +11,10 @@ class PairingsLargeBoxView: UIView {
     
     //MARK: - UI Properties
     let selectedItem: MenuItem
+    var selectedItemType: String
+    let fullMenu = MenuItems()
+    
+    lazy var suggestedPairings = configurePairings()
     
     let pairingsLargeBox: UIView = {
         let box = UIView()
@@ -35,7 +39,7 @@ class PairingsLargeBoxView: UIView {
     }()
     
     lazy var first: PairingsDetailBoxView = {
-        let first = PairingsDetailBoxView(item: selectedItem)
+        let first = PairingsDetailBoxView(item: suggestedPairings[0])
         first.translatesAutoresizingMaskIntoConstraints = false
         first.heightAnchor.constraint(equalToConstant: 116).isActive = true
         first.widthAnchor.constraint(equalToConstant: 96).isActive = true
@@ -43,7 +47,7 @@ class PairingsLargeBoxView: UIView {
     }()
     
     lazy var second: PairingsDetailBoxView = {
-        let second = PairingsDetailBoxView(item: selectedItem)
+        let second = PairingsDetailBoxView(item: suggestedPairings[1])
         second.translatesAutoresizingMaskIntoConstraints = false
         second.heightAnchor.constraint(equalToConstant: 116).isActive = true
         second.widthAnchor.constraint(equalToConstant: 96).isActive = true
@@ -51,7 +55,7 @@ class PairingsLargeBoxView: UIView {
     }()
     
     lazy var third: PairingsDetailBoxView = {
-        let third = PairingsDetailBoxView(item: selectedItem)
+        let third = PairingsDetailBoxView(item: suggestedPairings[2])
         third.translatesAutoresizingMaskIntoConstraints = false
         third.heightAnchor.constraint(equalToConstant: 116).isActive = true
         third.widthAnchor.constraint(equalToConstant: 96).isActive = true
@@ -69,8 +73,9 @@ class PairingsLargeBoxView: UIView {
     
     //MARK: - Initializers
     
-    init(selectedItem: MenuItem) {
+    init(selectedItem: MenuItem, type: String) {
         self.selectedItem = selectedItem
+        self.selectedItemType = type
         
         super.init(frame: .zero)
         
@@ -82,6 +87,34 @@ class PairingsLargeBoxView: UIView {
     }
     
     //MARK: - UI Setup
+    private func configurePairings() -> [MenuItem] {
+        switch selectedItemType {
+        case "drink":
+            return [
+                Food(image: "cupcake", name: "Cupcake", description: "sample", price: 4.00), //dummy data
+                Food(image: "pie", name: "Pie", description: "sample", price: 4.00), //dummy data
+                Food(image: "gelato", name: "Gelato", description: "sample", price: 4.00) //dummy data
+            ]
+        case "food":
+            return [
+                Drink(image: "latte", name: "Latte", description: "sample", price: 3.00), //dummy data
+                Drink(image: "espresso", name: "Espresso", description: "sample", price: 3.00), //dummy data
+                Drink(image: "dripCoffee", name: "Drip Coffee", description: "sample", price: 3.00) //dummy data
+            ]
+        case "other":
+            return [
+                Other(image: "newspaper", name: "Newspaper", description: "sample", price: 3.00),
+                Other(image: "coffeeBeans", name: "Coffee Beans", description: "sample", price: 2.00),
+                Other(image: "coffeeGrinder", name: "Coffee Grinder", description: "sample", price: 13.00)
+            ]
+        default:
+            return [
+                Food(image: "", name: "default", description: "default", price: 3.00),
+                Food(image: "", name: "default", description: "default", price: 3.00),
+                Food(image: "", name: "default", description: "default", price: 3.00)
+            ]
+        }
+    }
     
     private func setup() {
         addSubview(pairingsLargeBox)

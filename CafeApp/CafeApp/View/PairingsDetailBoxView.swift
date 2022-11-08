@@ -32,8 +32,9 @@ class PairingsDetailBoxView: UIView {
     let pairingTitle: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.font = UIFont(name: "Inter-Medium", size: 16)
+        title.font = UIFont(name: "Inter-Medium", size: 14)
         title.textColor = .black
+        title.adjustsFontSizeToFitWidth = true
         return title
     }()
     
